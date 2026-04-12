@@ -1,45 +1,40 @@
 const config = {
-  title: "Naresh Khatri | Full-Stack Developer",
+  title: "Abhinandan Maharana | SDE & Web Developer",
   description: {
-    long: "Explore the portfolio of Naresh, a full-stack developer and creative technologist specializing in interactive web experiences, 3D animations, and innovative projects. Discover my latest work, including Coding Ducks, The Booking Desk, Ghostchat, and more. Let's build something amazing together!",
+    long: "Explore the portfolio of Abhinandan Maharana, a Software Development Engineer and Web Developer specializing in building modern web applications, AI/ML projects, and interactive experiences. Discover my latest work and let's build something amazing together!",
     short:
-      "Discover the portfolio of Naresh, a full-stack developer creating interactive web experiences and innovative projects.",
+      "Portfolio of Abhinandan Maharana — SDE and Web Developer building modern web apps and AI/ML projects.",
   },
   keywords: [
-    "Naresh",
+    "Abhinandan Maharana",
     "portfolio",
+    "SDE",
+    "software developer",
+    "web developer",
     "full-stack developer",
-    "creative technologist",
-    "web development",
-    "3D animations",
-    "interactive websites",
-    "Coding Ducks",
-    "The Booking Desk",
-    "Ghostchat",
-    "web design",
-    "GSAP",
     "React",
     "Next.js",
-    "Spline",
-    "Framer Motion",
+    "Python",
+    "AI ML",
+    "web development",
   ],
-  author: "Naresh Khatri",
-  email: "naresh.khatri2345@gmail.com",
-  site: "https://nareshkhatri.site",
+  author: "Abhinandan Maharana",
+  email: "maharanaabhi220205@gmail.com",
+  site: "https://abhinandan-maharana.vercel.app",
 
   // for github stars button
-  githubUsername: "naresh-khatri",
+  githubUsername: "Abhi005-live",
   githubRepo: "3d-portfolio",
 
   get ogImg() {
     return this.site + "/assets/seo/og-image.png";
   },
   social: {
-    twitter: "https://x.com/nothotchaddi",
-    linkedin: "https://www.linkedin.com/in/naresh-khatri/",
-    instagram: "https://www.instagram.com/hotchaddi",
-    facebook: "https://www.facebook.com/HotChaddi/",
-    github: "https://github.com/Naresh-Khatri",
+    twitter: "https://x.com",
+    linkedin: "https://www.linkedin.com/in/abhinandan-maharana",
+    instagram: "https://www.instagram.com",
+    facebook: "https://www.facebook.com",
+    github: "https://github.com/Abhi005-live",
   },
 };
 export { config };

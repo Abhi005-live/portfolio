@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=1024 next dev --no-turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -29,7 +29,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "devtools-detector": "^2.0.22",
-    "embla-carousel-react": "^8.1.8",
+    "embla-carousel-react": "^8.6.0",
     "gray-matter": "^4.0.3",
     "gsap": "^3.12.5",
     "lenis": "^1.1.6",
@@ -56,7 +56,8 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/three": "^0.167.1",
-    "eslint": "^8",
+    "cross-env": "^10.1.0",
+    "eslint": "^9",
     "eslint-config-next": "16.2.2",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
