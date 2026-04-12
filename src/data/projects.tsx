@@ -56,8 +56,8 @@ const projects: Project[] = [
     id: "ppcv",
     category: "AI / ML",
     title: "Personality Prediction via CV",
-    src: "/assets/projects-screenshots/logo-dark.webp",
-    screenshots: [],
+    src: "https://opengraph.githubassets.com/1/Abhi005-live/ppcv",
+    screenshots: ["https://opengraph.githubassets.com/1/Abhi005-live/ppcv"],
     skills: {
       frontend: [PROJECT_SKILLS.python],
       backend: [PROJECT_SKILLS.python],
@@ -88,8 +88,8 @@ const projects: Project[] = [
     id: "quantum_club",
     category: "Web",
     title: "Quantum Club Website",
-    src: "/assets/projects-screenshots/logo-dark.webp",
-    screenshots: [],
+    src: "https://opengraph.githubassets.com/1/Abhi005-live/quantum_club",
+    screenshots: ["https://opengraph.githubassets.com/1/Abhi005-live/quantum_club"],
     skills: {
       frontend: [PROJECT_SKILLS.js],
       backend: [],
@@ -120,8 +120,8 @@ const projects: Project[] = [
     id: "aiml_casestudy",
     category: "AI / ML",
     title: "AI/ML Case Study",
-    src: "/assets/projects-screenshots/logo-dark.webp",
-    screenshots: [],
+    src: "https://opengraph.githubassets.com/1/Abhi005-live/aiml_casestudy",
+    screenshots: ["https://opengraph.githubassets.com/1/Abhi005-live/aiml_casestudy"],
     skills: {
       frontend: [PROJECT_SKILLS.python],
       backend: [PROJECT_SKILLS.python],
