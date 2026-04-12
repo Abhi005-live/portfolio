@@ -3,7 +3,7 @@ import { config } from "@/data/config";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const getResend = () => new Resend(process.env.RESEND_API_KEY ?? "re_placeholder");
 
 const rateLimit = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT_MAX = 3;
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     if (!zodSuccess)
       return Response.json({ error: zodError?.message }, { status: 400 });
 
-    const { data: resendData, error: resendError } = await resend.emails.send({
+    const { data: resendData, error: resendError } = await getResend().emails.send({
       from: "Porfolio <onboarding@resend.dev>",
       to: [config.email],
       subject: "Contact me from portfolio",
