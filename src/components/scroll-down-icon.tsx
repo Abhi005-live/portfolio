@@ -4,38 +4,48 @@ import { AnimatePresence, motion } from "motion/react";
 
 const ScrollDownIcon = () => {
   const [show, setShow] = useState(true);
-  useEffect(() => {
-    if (typeof window === "undefined") return;
 
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 10) {
-        setShow(false);
-      } else {
-        setShow(true);
-      }
-    });
-  });
+  useEffect(() => {
+    const handler = () => setShow(window.scrollY <= 10);
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
   return (
     <AnimatePresence>
       {show && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-          className="w-fit min-h-[50px] p-1 border-2 rounded-full border-gray-500 dark:border-white "
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center gap-1"
         >
-          <motion.div
-            initial={{ y: 0 }}
-            animate={{ y: [0, 25], opacity: [1, 0] }}
-            transition={{
-              duration: 1,
-              ease: "easeOut",
-              repeat: Infinity,
-              repeatDelay: 1,
-            }}
-            className="w-3 h-3 rounded-full bg-gray-500 dark:bg-white"
-          />
+          {[0, 1, 2].map((i) => (
+            <motion.svg
+              key={i}
+              width="18"
+              height="10"
+              viewBox="0 0 18 10"
+              fill="none"
+              animate={{ opacity: [0.2, 1, 0.2] }}
+              transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
+            >
+              <polyline
+                points="1,1 9,9 17,1"
+                stroke="url(#chevron-grad)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <defs>
+                <linearGradient id="chevron-grad" x1="0" y1="0" x2="18" y2="0">
+                  <stop offset="0%" stopColor="#7c3aed" />
+                  <stop offset="100%" stopColor="#ec4899" />
+                </linearGradient>
+              </defs>
+            </motion.svg>
+          ))}
         </motion.div>
       )}
     </AnimatePresence>

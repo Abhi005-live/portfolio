@@ -34,6 +34,8 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --brand: hsl(20, 100%, 70%);
+    --neon: #a78bfa;
+    --neon2: #ec4899;
   }
 
   .dark {
@@ -68,22 +70,18 @@ body {
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
   }
 }
 
-/* canvas-confetti injects a canvas with inline z-index */
 body > canvas {
   pointer-events: none !important;
 }
 
 @layer utilities {
-  .canvas-overlay-mode {
-    pointer-events: none;
-  }
-
+  /* ── pointer-events passthrough ── */
+  .canvas-overlay-mode { pointer-events: none; }
   .canvas-overlay-mode a,
   .canvas-overlay-mode button,
   .canvas-overlay-mode input,
@@ -92,39 +90,141 @@ body > canvas {
   .canvas-overlay-mode textarea,
   .canvas-overlay-mode [role="button"],
   .canvas-overlay-mode p,
-  .canvas-overlay-mode h1,
-  .canvas-overlay-mode h2,
-  .canvas-overlay-mode h3,
-  .canvas-overlay-mode h4,
-  .canvas-overlay-mode h5,
-  .canvas-overlay-mode h6,
-  .canvas-overlay-mode span,
-  .canvas-overlay-mode svg {
-    pointer-events: auto;
-  }
+  .canvas-overlay-mode h1,.canvas-overlay-mode h2,.canvas-overlay-mode h3,
+  .canvas-overlay-mode h4,.canvas-overlay-mode h5,.canvas-overlay-mode h6,
+  .canvas-overlay-mode span,.canvas-overlay-mode svg { pointer-events: auto; }
 
-  /* Gradient text utility */
+  /* ── gradient text ── */
   .gradient-text {
-    @apply bg-gradient-to-r from-violet-500 via-fuchsia-500 to-pink-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent;
   }
 
-  /* Glowing orb */
+  /* ── ambient orb ── */
   .glow-orb {
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.25;
-    animation: orb-pulse 6s ease-in-out infinite alternate;
+    filter: blur(90px);
+    opacity: 0.18;
+    animation: orb-pulse 7s ease-in-out infinite alternate;
   }
 
-  /* Grid background */
+  /* ── dot-grid background ── */
   .bg-grid {
-    background-image:
-      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
-    background-size: 48px 48px;
+    background-image: radial-gradient(circle, rgba(139,92,246,0.18) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
-  /* Gradient border card */
+  /* ── clipped corner panel (game-UI style) ── */
+  .clip-panel {
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+  .clip-panel-sm {
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+
+  /* ── neon border card ── */
+  .neon-card {
+    position: relative;
+    background: rgba(10, 5, 25, 0.55);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .neon-card:hover {
+    border-color: rgba(139, 92, 246, 0.6);
+    box-shadow: 0 0 24px rgba(139, 92, 246, 0.2), inset 0 0 24px rgba(139, 92, 246, 0.04);
+  }
+
+  /* ── neon left-accent bar ── */
+  .neon-left-bar {
+    border-left: 2px solid transparent;
+    border-image: linear-gradient(to bottom, #7c3aed, #ec4899) 1;
+  }
+
+  /* ── shimmer border (animated) ── */
+  .shimmer-border {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-border::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(105deg, transparent 40%, rgba(167,139,250,0.35) 50%, transparent 60%);
+    background-size: 200% 100%;
+    animation: shimmer-move 3s linear infinite;
+    pointer-events: none;
+  }
+
+  /* ── scan-line overlay ── */
+  .scanlines::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.06) 3px,
+      rgba(0, 0, 0, 0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── neon button ── */
+  .btn-neon {
+    position: relative;
+    border: 1px solid rgba(139,92,246,0.5);
+    background: rgba(139,92,246,0.08);
+    color: #c4b5fd;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+  .btn-neon:hover {
+    background: rgba(139,92,246,0.22);
+    border-color: rgba(139,92,246,0.9);
+    color: #ede9fe;
+    box-shadow: 0 0 18px rgba(139,92,246,0.45);
+  }
+
+  /* ── neon primary button ── */
+  .btn-neon-primary {
+    position: relative;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    border: none;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+  .btn-neon-primary:hover {
+    box-shadow: 0 0 24px rgba(139,92,246,0.6), 0 0 48px rgba(139,92,246,0.2);
+    filter: brightness(1.15);
+  }
+
+  /* ── corner bracket decoration ── */
+  .corner-brackets {
+    position: relative;
+  }
+  .corner-brackets::before,
+  .corner-brackets::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: rgba(139,92,246,0.7);
+    border-style: solid;
+  }
+  .corner-brackets::before {
+    top: -2px; left: -2px;
+    border-width: 2px 0 0 2px;
+  }
+  .corner-brackets::after {
+    bottom: -2px; right: -2px;
+    border-width: 0 2px 2px 0;
+  }
+
+  /* ── gradient border (pseudo) ── */
   .gradient-border {
     position: relative;
   }
@@ -134,7 +234,7 @@ body > canvas {
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(139,92,246,0.4), rgba(236,72,153,0.2), transparent);
+    background: linear-gradient(135deg, rgba(139,92,246,0.5), rgba(236,72,153,0.3), transparent);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -142,8 +242,24 @@ body > canvas {
   }
 }
 
+/* ── keyframes ── */
 @keyframes orb-pulse {
-  0%   { transform: scale(1) translate(0, 0); opacity: 0.2; }
-  50%  { transform: scale(1.15) translate(2%, 3%); opacity: 0.3; }
-  100% { transform: scale(0.95) translate(-2%, -2%); opacity: 0.18; }
+  0%   { transform: scale(1)    translate(0, 0);     opacity: 0.15; }
+  50%  { transform: scale(1.12) translate(2%, 3%);   opacity: 0.22; }
+  100% { transform: scale(0.94) translate(-2%, -2%); opacity: 0.13; }
+}
+
+@keyframes shimmer-move {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes neon-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
 }
