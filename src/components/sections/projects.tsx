@@ -36,20 +36,24 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <ResponsiveDialog>
         <ResponsiveDialogTrigger className="bg-transparent flex justify-center">
           <div
-            className="relative w-[400px] h-auto rounded-lg overflow-hidden"
+            className="relative w-[400px] h-auto rounded-xl overflow-hidden group"
             style={{ aspectRatio: "3/2" }}
           >
             <Image
-              className="absolute w-full h-full top-0 left-0 hover:scale-[1.05] transition-all"
+              className="absolute w-full h-full top-0 left-0 group-hover:scale-[1.08] transition-transform duration-500"
               src={project.src}
               alt={project.title}
               width={300}
               height={300}
             />
+            {/* Glow ring on hover */}
+            <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              style={{ boxShadow: "inset 0 0 0 1.5px rgba(139,92,246,0.6), 0 0 30px rgba(139,92,246,0.2)" }}
+            />
             <div className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-background via-background/85 to-transparent pointer-events-none">
               <div className="flex flex-col h-full items-start justify-end p-6">
                 <div className="text-lg text-left">{project.title}</div>
-                <div className="text-xs bg-primary text-primary-foreground rounded-lg w-fit px-2">
+                <div className="text-xs bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white rounded-lg w-fit px-2">
                   {project.category}
                 </div>
               </div>

@@ -14,14 +14,17 @@ import SectionWrapper from "../ui/section-wrapper";
 
 const ContactSection = () => {
   return (
-    <SectionWrapper id="contact" className="min-h-screen max-w-7xl mx-auto ">
+    <SectionWrapper id="contact" className="min-h-screen max-w-7xl mx-auto relative overflow-hidden">
+      {/* Decorative glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-500 glow-orb pointer-events-none" />
+
       <SectionHeader id='contact' className="relative mb-14" title={
         <>
           LET&apos;S WORK <br />
-          TOGETHER
+          <span className="gradient-text">TOGETHER</span>
         </>} />
       <div className="grid grid-cols-1 md:grid-cols-2 z-[9999] mx-4">
-        <Card className="min-w-7xl bg-white/70 dark:bg-black/70 backdrop-blur-sm rounded-xl mt-10 md:mt-20">
+        <Card className="min-w-7xl bg-white/70 dark:bg-black/70 backdrop-blur-sm rounded-xl mt-10 md:mt-20 gradient-border">
           <CardHeader>
             <CardTitle className="text-4xl">Contact Form</CardTitle>
             <CardDescription>

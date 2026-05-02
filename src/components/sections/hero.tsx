@@ -20,7 +20,15 @@ const HeroSection = () => {
   const { isLoading } = usePreloader();
 
   return (
-    <SectionWrapper id="hero" className={cn("relative w-full h-screen")}>
+    <SectionWrapper id="hero" className={cn("relative w-full h-screen overflow-hidden")}>
+      {/* Grid background */}
+      <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+
+      {/* Glowing orbs */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-violet-500 glow-orb pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-fuchsia-500 glow-orb pointer-events-none" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-pink-500 glow-orb pointer-events-none" style={{ animationDelay: "4s" }} />
+
       <div className="grid md:grid-cols-2">
         <div
           className={cn(
@@ -50,9 +58,9 @@ const HeroSection = () => {
                     <TooltipTrigger asChild>
                       <h1
                         className={cn(
-                          "-ml-[6px] leading-none font-thin text-transparent text-slate-800 text-left",
+                          "-ml-[6px] leading-none text-left",
                           "font-thin text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
-                          "cursor-default text-edge-outline font-display "
+                          "cursor-default font-display gradient-text"
                         )}
                       >
                         {config.author.split(" ")[0]}
@@ -68,7 +76,6 @@ const HeroSection = () => {
                     </TooltipContent>
                   </Tooltip>
                 </BlurIn>
-                {/* <div className="md:block hidden bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 w-screen h-px animate-fade-right animate-glow" /> */}
                 <BlurIn delay={1.2}>
                   <p
                     className={cn(

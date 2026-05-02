@@ -20,11 +20,17 @@ const ExperienceSection = () => {
         />
 
         <div className="flex flex-col gap-8 md:gap-12 relative">
-          {/* Connector Line - simplified to a subtle border */}
-          <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-px bg-border hidden md:block -translate-x-1/2" />
+          {/* Glowing gradient timeline line */}
+          <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-px hidden md:block -translate-x-1/2"
+            style={{ background: "linear-gradient(to bottom, transparent, rgba(139,92,246,0.6), rgba(236,72,153,0.6), transparent)" }}
+          />
 
           {EXPERIENCE.map((exp, index) => (
             <div key={exp.id} className="relative">
+              {/* Glowing dot on timeline */}
+              <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1 w-3 h-3 rounded-full hidden md:block"
+                style={{ background: "linear-gradient(135deg, #8b5cf6, #ec4899)", boxShadow: "0 0 12px rgba(139,92,246,0.8)" }}
+              />
               <ExperienceCard experience={exp} index={index} />
             </div>
           ))}
@@ -54,9 +60,9 @@ const ExperienceCard = ({
     >
       <Card
         className={cn(
-          "bg-card text-card-foreground border-border",
-          "hover:border-primary/20 transition-colors duration-300",
-          "shadow-sm hover:shadow-md"
+          "bg-card/80 text-card-foreground backdrop-blur-sm gradient-border",
+          "hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] transition-all duration-300",
+          "shadow-sm"
         )}
       >
         <CardHeader className="pb-3">
